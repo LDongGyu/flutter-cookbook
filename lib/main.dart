@@ -5,6 +5,7 @@ import 'package:flutter_cookbook/MyDrawer.dart';
 
 import 'MyOrientation.dart';
 import 'MySnackBar.dart';
+import 'MyTapController.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,12 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primaryColor: Colors.blue,
         accentColor: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyOrientation(),
+      home: MyTabController(),
     );
   }
 }
