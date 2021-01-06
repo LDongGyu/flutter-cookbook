@@ -3,6 +3,7 @@ import 'package:flutter_cookbook/MyAnimatedContainer.dart';
 import 'package:flutter_cookbook/MyAnimatedOpacity.dart';
 import 'package:flutter_cookbook/MyDrawer.dart';
 
+import 'MyOrientation.dart';
 import 'MySnackBar.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MySnackBar(),
+      home: MyOrientation(),
     );
   }
 }
