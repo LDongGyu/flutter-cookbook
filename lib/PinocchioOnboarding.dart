@@ -33,19 +33,39 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ),
             Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    top: 59,
+                    right: 16
+                ),
+                child: Text('건너뛰기',
+                  style: TextStyle(
+                      color: Color(0xFF9AA6B0)
+                  ),
+                ),
+              ),
+            ),
+            Align(
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 250,
-                color: Colors.white,
-                  child: Column(children: <Widget>[
-                    Text('옷 세탁법이 궁금하세요?'),
-                    Text('카메라 버튼을 눌러 라벨을 찍어보세요'),
-                    RaisedButton(
-                      child: Text('다음'),
-                      onPressed: () {},
-                    )
-                  ]),
+                height: 260,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16.0),
+                    topRight: Radius.circular(16.0)
+                  )
+                ),
+                child: Column(children: <Widget>[
+                  Text('옷 세탁법이 궁금하세요?'),
+                  Text('카메라 버튼을 눌러 라벨을 찍어보세요'),
+                  RaisedButton(
+                    child: Text('다음'),
+                    onPressed: () {},
+                  )
+                ]),
               ),
             )
           ],
