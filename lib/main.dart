@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/MyAnimatedContainer.dart';
 import 'package:flutter_cookbook/MyAnimatedOpacity.dart';
 import 'package:flutter_cookbook/MyDrawer.dart';
+import 'package:flutter_cookbook/MyPageState.dart';
+import 'package:flutter_cookbook/PinocchioOnboarding.dart';
 
 import 'MyOrientation.dart';
 import 'MySnackBar.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyTabController(),
+      home: OnboardingPage(),
     );
   }
 }
