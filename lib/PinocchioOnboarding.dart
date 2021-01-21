@@ -9,6 +9,7 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   int currentPageValue = 0;
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Container(
               width: MediaQuery.of(context).size.width,
               child: PageView.builder(
+                controller: pageController,
                 itemCount: onbordingList.length,
                 onPageChanged: (page){
                   getChangedPageAndMoveBar(page);
@@ -76,7 +78,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   Text('카메라 버튼을 눌러 라벨을 찍어보세요'),
                   RaisedButton(
                     child: Text('다음'),
-                    onPressed: () {},
+                    onPressed: () {
+                      if(currentPageValue <2){
+                        print('$currentPageValue');
+                        getChangedPageAndMoveBar(currentPageValue+1);
+                        pageController.jumpToPage(currentPageValue);
+                      }
+                    },
                   )
                 ]),
               ),
@@ -94,11 +102,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
     ),
     Container(
       alignment: Alignment.topCenter,
-      child: Image.asset('images/2.png'),
+      child: Image.asset('images/1.png'),
     ),
     Container(
       alignment: Alignment.topCenter,
-      child: Image.asset('images/1.png'),
+      child: Image.asset('images/2.png'),
     )
   ];
 
@@ -118,8 +126,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   void getChangedPageAndMoveBar(int page) {
-    currentPageValue = page;
-    setState(() {});
+    setState(() {
+      currentPageValue = page;
+    });
   }
 }
 
