@@ -125,6 +125,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
+  final List<List<String>> prompt = [
+    ['옷 세탁법이 궁금하세요?','카메라 버튼을 눌러 라벨을 찍어보세요'],
+    ['찍힌 라벨이\n맞는지 확인해주세요','산클에서 라벨 이미지를 분석하여\n세탁법과 상세 정보를 알려준답니다!'],
+    ['보관함에 라벨을\n저장할 수 있어요','이전에 찍었던 라벨 정보를 다시 확인할 수 있어요']
+  ];
+
   void getChangedPageAndMoveBar(int page) {
     setState(() {
       currentPageValue = page;
