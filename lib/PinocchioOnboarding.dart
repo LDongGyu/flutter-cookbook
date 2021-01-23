@@ -74,8 +74,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       ),
                     ],
                   ),
-                  Text('옷 세탁법이 궁금하세요?'),
-                  Text('카메라 버튼을 눌러 라벨을 찍어보세요'),
+                  Text('${prompt[currentPageValue][0]}'),
+                  Text('${prompt[currentPageValue][1]}'),
                   RaisedButton(
                     child: Text('다음'),
                     onPressed: () {
