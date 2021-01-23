@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:page_view_indicators/circle_page_indicator.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override
@@ -74,8 +73,23 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       ),
                     ],
                   ),
-                  Text('${prompt[currentPageValue][0]}'),
-                  Text('${prompt[currentPageValue][1]}'),
+                  Align(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text('${prompt[currentPageValue][0]}',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700,
+                              backgroundColor: Colors.red,
+                              fontFamily: 'nanum_square'
+                          ),),
+                        Text('${prompt[currentPageValue][1]}',
+                          style: TextStyle(fontSize: 16))
+                      ]
+                    )
+                  ),
                   RaisedButton(
                     child: Text('다음'),
                     onPressed: () {
@@ -98,15 +112,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final List<Widget> onbordingList = <Widget>[
     Container(
       alignment: Alignment.topCenter,
-      child: Image.asset('images/3.png'),
+      child: Image.asset('assets/images/3.png'),
     ),
     Container(
       alignment: Alignment.topCenter,
-      child: Image.asset('images/1.png'),
+      child: Image.asset('assets/images/1.png'),
     ),
     Container(
       alignment: Alignment.topCenter,
-      child: Image.asset('images/2.png'),
+      child: Image.asset('assets/images/2.png'),
     )
   ];
 
