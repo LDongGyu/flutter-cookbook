@@ -49,7 +49,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 width: MediaQuery.of(context).size.width,
                 height: 260,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
                 child: Column(children: <Widget>[
                   Stack(
@@ -66,35 +66,45 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ],
                         ),
                         height: 52,
-                        color: Colors.yellow,
                       ),
                     ],
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text('${prompt[currentPageValue][0]}',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                              backgroundColor: Colors.red,
-                              fontFamily: 'nanum_square'
-                          ),),
-                        SizedBox(height: 16.0),
-                        Text('${prompt[currentPageValue][1]}',
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('${prompt[currentPageValue][0]}',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontSize: 16,
-                              backgroundColor: Colors.red,
-                            ))
-                      ]
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'nanum_square'
+                            ),),
+                          SizedBox(height: 16.0),
+                          Text('${prompt[currentPageValue][1]}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'nanum_square',
+                                fontWeight: FontWeight.w300
+                              ))
+                        ]
+                      ),
                     )
                   ),
-                  RaisedButton(
+                  Expanded(child: Container()),
+                  FlatButton(
                     child: Text('다음'),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Color.fromRGBO(15, 16, 18, 0.4),
+                        width: 0.5
+                      ),
+                      borderRadius: BorderRadius.circular(30.0)
+                    ),
                     onPressed: () {
                       if(currentPageValue <2){
                         print('$currentPageValue');
@@ -102,6 +112,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         pageController.jumpToPage(currentPageValue);
                       }
                     },
+                  ),
+                  SizedBox(
+                    height: 40,
                   )
                 ]),
               ),
