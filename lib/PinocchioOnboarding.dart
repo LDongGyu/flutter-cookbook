@@ -49,11 +49,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 width: MediaQuery.of(context).size.width,
                 height: 260,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.0),
-                    topRight: Radius.circular(16.0)
-                  )
+                  color: Colors.blue,
                 ),
                 child: Column(children: <Widget>[
                   Stack(
@@ -70,12 +66,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ],
                         ),
                         height: 52,
+                        color: Colors.yellow,
                       ),
                     ],
                   ),
                   Align(
+                    alignment: Alignment.centerLeft,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text('${prompt[currentPageValue][0]}',
                           textAlign: TextAlign.left,
@@ -85,8 +83,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               backgroundColor: Colors.red,
                               fontFamily: 'nanum_square'
                           ),),
+                        SizedBox(height: 16.0),
                         Text('${prompt[currentPageValue][1]}',
-                          style: TextStyle(fontSize: 16))
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 16,
+                              backgroundColor: Colors.red,
+                            ))
                       ]
                     )
                   ),
