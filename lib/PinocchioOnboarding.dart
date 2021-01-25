@@ -88,13 +88,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           onbordingList2[currentPageValue],
-                          // Text('${prompt[currentPageValue][0]}',
-                          //   textAlign: TextAlign.left,
-                          //   style: TextStyle(
-                          //       fontSize: 30,
-                          //       fontWeight: FontWeight.w700,
-                          //       fontFamily: 'nanum_square'
-                          //   ),),
                           SizedBox(height: 16.0),
                           Text('${prompt[currentPageValue][1]}',
                               textAlign: TextAlign.left,
@@ -108,59 +101,58 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   )
               ),
               Expanded(child: Container()),
-              Container(
-                // constraints: BoxConstraints(
-                //   minHeight: 52,
-                //   minWidth: 120,
-                // ),
-                height: 52,
-                width: 150,
-                child: TouchableOpacity(
-                  activeOpacity: 0.6,
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: <Widget>[
-                      FlatButton(
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: 15),
-                          child: Text('${prompt[currentPageValue][2]}',
-                            style: TextStyle(
-                                fontFamily: 'nanum_square',
-                                fontWeight: FontWeight.w800,
-                                fontSize: 16,
-                            ),
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                color: Color.fromRGBO(15, 16, 18, 0.4),
-                                width: 0.5
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)
-                        ),
-                        onPressed: () {
-                          if (currentPageValue < 2) {
-                            print('$currentPageValue');
-                            getChangedPageAndMoveBar(currentPageValue + 1);
-                            pageController.jumpToPage(currentPageValue);
-                          }
-                        },
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
+              TouchableOpacity(
+                activeOpacity: 0.6,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    FlatButton(
+                      height: 52,
+                      child: Wrap(
+                        // alignment: Alignment.centerLeft,
+                        // padding: EdgeInsets.only(left: 15),
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(width: 16),
+                              Text('${prompt[currentPageValue][2]}',
+                                style: TextStyle(
+                                    fontFamily: 'nanum_square',
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 16,
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Container(
+                                child: SvgPicture.asset('assets/images/shape.svg',
+                                    height: 16,
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                            ]
+                          )
+                        ]
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 24),
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: SvgPicture.asset('assets/images/buttonguide.svg',
-                            width: 26,
-                            height: 26,
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: Color.fromRGBO(15, 16, 18, 0.4),
+                              width: 0.5
                           ),
-                        ),
+                          borderRadius: BorderRadius.circular(30.0)
                       ),
-                    ],
-                  ),
+                      onPressed: () {
+                        if (currentPageValue < 2) {
+                          print('$currentPageValue');
+                          getChangedPageAndMoveBar(currentPageValue + 1);
+                          pageController.jumpToPage(currentPageValue);
+                        }
+                      },
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                    ),
+
+                  ],
                 ),
               ),
               SizedBox(
