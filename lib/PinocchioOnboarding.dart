@@ -30,148 +30,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Expanded(
-              flex: 6,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    // width: MediaQuery.of(context).size.width,
-                    child: PageView.builder(
-                      controller: pageController,
-                      itemCount: onbordingList.length,
-                      onPageChanged: (page) {
-                        getChangedPageAndMoveBar(page);
-                      },
-                      itemBuilder: (context, index) {
-                        return onbordingList[index];
-                      }),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 59, right: 16),
-                      child: TouchableOpacity(
-                        activeOpacity: 0.6,
-                        onTap: () {
-                          _prefs.setBool('isGuided', true);
-                        },
-                        child: Text(
-                          '건너뛰기',
-                          style: TextStyle(color: Color.fromRGBO(15, 16, 18, 1)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 4,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Column(children: <Widget>[
-                    Stack(
-                      alignment: AlignmentDirectional.topStart,
-                      children: <Widget>[
-                        Container(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              for (int i = 0; i < onbordingList.length; i++)
-                                if (i == currentPageValue) ...[
-                                  circleBar(true)
-                                ] else
-                                  circleBar(false),
-                            ],
-                          ),
-                          height: 52,
-                        ),
-                      ],
-                    ),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 24),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                onbordingList2[currentPageValue],
-                                SizedBox(height: 16.0),
-                                Text('${prompt[currentPageValue][1]}',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: 'nanum_square',
-                                        fontWeight: FontWeight.w300))
-                              ]),
-                        )),
-                    Expanded(child: Container()),
-                    TouchableOpacity(
-                      activeOpacity: 0.6,
-                      child: Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: <Widget>[
-                          FlatButton(
-                            height: 52,
-                            child: Wrap(
-                                // alignment: Alignment.centerLeft,
-                                // padding: EdgeInsets.only(left: 15),
-                                children: [
-                                  Row(mainAxisSize: MainAxisSize.min, children: [
-                                    SizedBox(width: 16),
-                                    Text(
-                                      '${prompt[currentPageValue][2]}',
-                                      style: TextStyle(
-                                        fontFamily: 'nanum_square',
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    SizedBox(width: 16),
-                                    Container(
-                                      child: SvgPicture.asset(
-                                        'assets/images/shape.svg',
-                                        height: 16,
-                                      ),
-                                    ),
-                                    SizedBox(width: 16),
-                                  ])
-                                ]),
-                            shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    color: Color.fromRGBO(15, 16, 18, 0.4),
-                                    width: 0.5),
-                                borderRadius: BorderRadius.circular(30.0)),
-                            onPressed: () {
-                              if (currentPageValue < 2) {
-                                print('$currentPageValue');
-                                getChangedPageAndMoveBar(currentPageValue + 1);
-                                pageController.jumpToPage(currentPageValue);
-                              }
-                              if (currentPageValue == 2) {
-                                _prefs.setBool('isGuided', true);
-                              }
-                            },
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    )
-                  ]),
-                ),
-              ),
-            )
+            pageView(),
+            bottomView()
           ],
         ),
       ),
@@ -195,6 +55,154 @@ class _OnboardingPageState extends State<OnboardingPage> {
         fit: BoxFit.fill
     ),
   ];
+
+  Widget pageView(){
+    return Expanded(
+      flex: 6,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            // width: MediaQuery.of(context).size.width,
+            child: PageView.builder(
+                controller: pageController,
+                itemCount: onbordingList.length,
+                onPageChanged: (page) {
+                  getChangedPageAndMoveBar(page);
+                },
+                itemBuilder: (context, index) {
+                  return onbordingList[index];
+                }),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 59, right: 16),
+              child: TouchableOpacity(
+                activeOpacity: 0.6,
+                onTap: () {
+                  _prefs.setBool('isGuided', true);
+                },
+                child: Text(
+                  '건너뛰기',
+                  style: TextStyle(color: Color.fromRGBO(15, 16, 18, 1)),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget bottomView(){
+    return Expanded(
+      flex: 4,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 300,
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(children: <Widget>[
+            Stack(
+              alignment: AlignmentDirectional.topStart,
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      for (int i = 0; i < onbordingList.length; i++)
+                        if (i == currentPageValue) ...[
+                          circleBar(true)
+                        ] else
+                          circleBar(false),
+                    ],
+                  ),
+                  height: 52,
+                ),
+              ],
+            ),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 24),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        onbordingList2[currentPageValue],
+                        SizedBox(height: 16.0),
+                        Text('${prompt[currentPageValue][1]}',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'nanum_square',
+                                fontWeight: FontWeight.w300))
+                      ]),
+                )),
+            Expanded(child: Container()),
+            TouchableOpacity(
+              activeOpacity: 0.6,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: <Widget>[
+                  FlatButton(
+                    height: 52,
+                    child: Wrap(
+                      // alignment: Alignment.centerLeft,
+                      // padding: EdgeInsets.only(left: 15),
+                        children: [
+                          Row(mainAxisSize: MainAxisSize.min, children: [
+                            SizedBox(width: 16),
+                            Text(
+                              '${prompt[currentPageValue][2]}',
+                              style: TextStyle(
+                                fontFamily: 'nanum_square',
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Container(
+                              child: SvgPicture.asset(
+                                'assets/images/shape.svg',
+                                height: 16,
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                          ])
+                        ]),
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                            color: Color.fromRGBO(15, 16, 18, 0.4),
+                            width: 0.5),
+                        borderRadius: BorderRadius.circular(30.0)),
+                    onPressed: () {
+                      if (currentPageValue < 2) {
+                        print('$currentPageValue');
+                        getChangedPageAndMoveBar(currentPageValue + 1);
+                        pageController.jumpToPage(currentPageValue);
+                      }
+                      if (currentPageValue == 2) {
+                        _prefs.setBool('isGuided', true);
+                      }
+                    },
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            )
+          ]),
+        ),
+      ),
+    );
+  }
 
   Widget circleBar(bool isActive) {
     return AnimatedContainer(
