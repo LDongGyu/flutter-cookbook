@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -11,6 +12,17 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   int currentPageValue = 0;
   final pageController = PageController();
+  SharedPreferences _prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadIsGuided();
+  }
+
+  void _loadIsGuided() async{
+    _prefs = await SharedPreferences.getInstance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +53,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           child: TouchableOpacity(
             activeOpacity: 0.6,
             onTap: (){
-
+              _prefs.setBool('isGuided', true);
             },
             child: Text('건너뛰기',
               style: TextStyle(
@@ -146,6 +158,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           print('$currentPageValue');
                           getChangedPageAndMoveBar(currentPageValue + 1);
                           pageController.jumpToPage(currentPageValue);
+                        }
+                        if (currentPageValue == 2){
+                          _prefs.setBool('isGuided', true);
                         }
                       },
                       splashColor: Colors.transparent,
